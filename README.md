@@ -1,58 +1,182 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EduHelperAgent
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+EduHelperAgent is a simple AI-powered educational chatbot built using Laravel and LarAgent.
+The chatbot helps school students learn basic topics in a friendly and simple way.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* AI chatbot using Laravel
+* Supports:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  * Solar System
+  * Fractions
+  * Water Cycle
+* Polite responses
+* Maximum 60-word replies
+* Conversation memory using session
+* Restricts unsupported topics
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Technologies Used
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Laravel 13
+* LarAgent
+* Groq API (Free LLM Provider)
+* PHP
+* Blade Template Engine
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+# Project Structure
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+app/
+├── AiAgents/
+│ └── EduHelperAgent.php
+│
+├── Http/
+│ └── Controllers/
+│ └── ChatController.php
 
-```bash
-composer require laravel/boost --dev
+resources/
+└── views/
+└── chat_box/
+└── chat.blade.php
 
-php artisan boost:install
-```
+routes/
+└── web.php
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+public/
+└── images/
+└── robot.jpg
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Installation Steps
 
-## Code of Conduct
+## Step 1 — Clone Repository
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+git clone https://github.com/varnna/edu-helper-agent.git
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Step 2 — Open Project Folder
 
-## License
+cd edu-helper-agent
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Step 3 — Install Dependencies
+
+composer install
+
+---
+
+## Step 4 — Create Environment File
+
+copy .env.example .env
+
+---
+
+## Step 5 — Generate Application Key
+
+php artisan key:generate
+
+---
+
+# API Setup
+
+This project uses Groq as the free LLM provider.
+
+## Step 1 — Create Groq Account
+
+Visit:
+
+https://console.groq.com
+
+Login using Google or GitHub account.
+
+---
+
+## Step 2 — Generate API Key
+
+Open:
+
+https://console.groq.com/keys
+
+Click:
+
+Create API Key
+
+Copy the generated API key.
+
+---
+
+## Step 3 — Configure `.env`
+
+Open `.env` file and add:
+
+OPENAI_API_KEY=your_groq_api_key
+
+OPENAI_BASE_URL=https://api.groq.com/openai/v1
+
+---
+
+## Step 4 — Clear Cache
+
+Run:
+
+php artisan optimize:clear
+
+
+---
+
+# Running the Project
+
+Start Laravel server:
+
+php artisan serve
+
+Open browser:
+
+http://127.0.0.1:8000
+
+---
+
+# How EduHelperAgent Works
+
+1. Student enters a question in the chat interface.
+2. ChatController receives the message.
+3. Message is sent to EduHelperAgent.
+4. EduHelperAgent sends request to Groq AI model.
+5. AI generates response based on system instructions.
+6. Laravel displays response in chatbot UI.
+
+---
+
+# Conversation Memory
+
+Laravel session is used to store previous chat messages.
+
+This allows the chatbot to remember earlier conversation during the session.
+
+---
+
+# Supported Topics
+
+* Solar System
+* Fractions
+* Water Cycle
+
+If user asks another topic, the chatbot replies:
+
+"I can only help with Solar System, Fractions, or Water Cycle for now."
+
+---
+
+
+# Author
+
+Shinly p
