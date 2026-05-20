@@ -54,6 +54,10 @@ public/
 
 ---
 
+# Install LarAgent Package
+Run:composer require maestroerror/laragent
+# Publish Configuration
+php artisan vendor:publish --tag=laragent-config
 # Installation Steps
 
 ## Step 1 — Clone Repository
